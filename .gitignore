@@ -1,0 +1,38 @@
+# ====================================================
+# CMake + C言語プロジェクト用 .gitignore
+# ====================================================
+
+# 1. CMakeの生成物・ビルドフォルダ（最重要）
+build/
+bin/
+out/
+obj/
+obj_win/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CMakeUserPresets.json
+
+# 2. 自動生成される実行ファイル・中間ファイル・補完キャッシュ
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.lib
+*.so
+*.dylib
+compile_commands.json
+.cache/
+
+# 3. エディタ・OS固有の一時ファイル
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# 4. 実行ファイル（個別の生成物）
+raylib_invader
