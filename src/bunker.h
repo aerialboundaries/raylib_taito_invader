@@ -4,7 +4,7 @@
 #include "raylib.h"
 
 #define BUNKER_COUNT 4
-#define BUNKER_WIDTH 24
+#define BUNKER_WIDTH 22
 #define BUNKER_HEIGHT 16
 
 // 1つのシェルター構造体

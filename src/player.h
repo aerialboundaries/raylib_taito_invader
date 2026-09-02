@@ -4,7 +4,7 @@
 #include "raylib.h"
 
 // 自機および弾のサイズ・速度定数（224x256 画面基準）
-#define PLAYER_WIDTH 13.0f
+#define PLAYER_WIDTH 16.0f
 #define PLAYER_HEIGHT 8.0f
 
 #define PLAYER_SPEED 80.0f
