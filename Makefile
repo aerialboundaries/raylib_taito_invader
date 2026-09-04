@@ -88,3 +88,12 @@ win:
 .PHONY: win-run winrun
 win-run winrun:
 	make -f Makefile.win run
+
+
+# ----------------------------------------------------
+# LSP (Neovim / clangd) 用のコンパイルデータベース生成
+# ----------------------------------------------------
+.PHONY: compiledb
+
+compiledb: fclean
+	bear -- $(MAKE)
