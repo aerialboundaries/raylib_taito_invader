@@ -16,12 +16,10 @@ void Player_Init(Player *player)
 }
 
 // フレーム更新処理
-void Player_Update(Player *player)
+void Player_Update(Player *player, float delta)
 {
   if (!player->active)
     return;
-
-  float delta = GetFrameTime();
 
   // --- 1. 移動処理 ---
   if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A)) {

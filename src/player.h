@@ -29,7 +29,7 @@ typedef struct {
 
 // 公開関数
 void Player_Init(Player *player);
-void Player_Update(Player *player);
+void Player_Update(Player *player, float delta);
 void Player_Draw(const Player *player);
 
 Rectangle Player_GetBounds(const Player *player);

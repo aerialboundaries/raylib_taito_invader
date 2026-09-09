@@ -77,14 +77,14 @@ void AlienGroup_Init(AlienGroup *group)
 }
 
 // フレーム更新処理
-void AlienGroup_Update(AlienGroup *group)
+void AlienGroup_Update(AlienGroup *group, float delta)
 {
   if (group->alive_count == 0)
     return;
 
   // --- 1. 敵弾の更新 ---
   if (group->bullet.active) {
-    group->bullet.pos.y += group->bullet.speed * GetFrameTime();
+    group->bullet.pos.y += group->bullet.speed * delta;
     // 画面外（下端）に出たら消去
     if (group->bullet.pos.y > 256.0f) {
       group->bullet.active = false;
@@ -94,7 +94,7 @@ void AlienGroup_Update(AlienGroup *group)
   }
 
   // --- 2. インベーダーのステップ移動処理 ---
-  group->move_timer += GetFrameTime();
+  group->move_timer += delta;
   if (group->move_timer < group->move_interval)
     return;
 

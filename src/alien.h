@@ -44,7 +44,7 @@ typedef struct {
 
 // 公開関数
 void AlienGroup_Init(AlienGroup *group);
-void AlienGroup_Update(AlienGroup *group);
+void AlienGroup_Update(AlienGroup *group, float delta);
 void AlienGroup_Draw(const AlienGroup *group);
 bool AlienGroup_CheckCollision(AlienGroup *group, Vector2 bullet_pos,
                                Vector2 bullet_size, int *out_score);

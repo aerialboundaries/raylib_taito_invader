@@ -35,13 +35,16 @@ int main(void)
   RenderTexture2D target = LoadRenderTexture(GAME_WIDTH, GAME_HEIGHT);
 
   while (!WindowShouldClose()) {
+    // 1フレームの経過時間をここで1回だけ取得
+    float delta = GetFrameTime();
+
     // ---------------------------------------------------------------------
     // 1. フレーム更新 (Update)
     // ---------------------------------------------------------------------
     if (!game_over) {
-      Player_Update(&player);
-      AlienGroup_Update(&aliens);
-      Ufo_Update(&ufo);
+      Player_Update(&player, delta);
+      AlienGroup_Update(&aliens, delta);
+      Ufo_Update(&ufo, delta);
 
       // --- A. 自機弾の移動と各オブジェクトとの着弾判定 ---
       if (player.bullet.active) {

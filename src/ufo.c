@@ -14,9 +14,8 @@ void Ufo_Init(Ufo *ufo)
 }
 
 // フレーム更新
-void Ufo_Update(Ufo *ufo)
+void Ufo_Update(Ufo *ufo, float delta)
 {
-  float delta = GetFrameTime();
 
   // 撃破スコア表示のタイマー処理
   if (ufo->score_display > 0) {
