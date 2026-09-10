@@ -65,8 +65,11 @@ void Player_Draw(const Player *player, Texture2D texture)
 {
   // 自機弾の描画
   if (player->bullet.active) {
-    DrawRectangleV(player->bullet.pos, (Vector2){BULLET_WIDTH, BULLET_HEIGHT},
-                   WHITE);
+    // 矩形指定（spriteshee_rects.hの定義を使用）
+    Rectangle bullet_src = REC_PLAYER_BULLET;
+
+    // 当たり判定の位置(player->bullet.pos)に合わせてそのまま描画
+    DrawTextureRec(texture, bullet_src, player->bullet.pos, WHITE);
   }
 
   if (!player->active)
@@ -91,7 +94,6 @@ Rectangle Player_GetBounds(const Player *player)
 // 自機弾の当たり判定用矩形を取得
 Rectangle Player_GetBulletBounds(const Player *player)
 {
-
   if (!player->bullet.active) {
     return (Rectangle){0.0f, 0.0f, 0.0f, 0.0f};
   }
