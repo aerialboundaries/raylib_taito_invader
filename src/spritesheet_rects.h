@@ -38,7 +38,7 @@ static const Rectangle REC_PLAYER = {112.0f, 0.0f, 16.0f, 8.0f}; // (cell_x = 7)
 // -----------------------------------------------------------------------------
 
 // 6. 自機弾（1x4px : ドット中央配置）
-static const Rectangle REC_PLAYER_BULLET = {23.0f, 8.0f, 1.0f,
+static const Rectangle REC_PLAYER_BULLET = {7.0f, 8.0f, 1.0f,
                                             4.0f}; // (cell_x = 0)
 
 // 7. 敵弾 3種（各2コマ, 幅3px, 高さ6px）
