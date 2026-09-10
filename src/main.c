@@ -17,6 +17,9 @@ int main(void)
   InitWindow(screen_width, screen_height, "SPACE INVADERS (1978)");
   SetTargetFPS(60);
 
+  // 画像の読み込み（相対パス指定）
+  Texture2D sprite_sheet = LoadTexture("src/graphics/spritesheet.png");
+
   // 各ゲームモジュールの初期化
 
   Player player;
@@ -128,7 +131,7 @@ int main(void)
     Ufo_Draw(&ufo);
     BunkerGroup_Draw(bunkers);
     AlienGroup_Draw(&aliens);
-    Player_Draw(&player);
+    Player_Draw(&player, sprite_sheet);
 
     // 防衛ライン（最下部赤線）
 
@@ -158,6 +161,7 @@ int main(void)
 
   // メモリ解放
 
+  UnloadTexture(sprite_sheet);
   BunkerGroup_Unload(bunkers);
   UnloadRenderTexture(target);
   CloseWindow();

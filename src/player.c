@@ -1,4 +1,7 @@
+#include <raylib.h>
+
 #include "player.h"
+#include "spritesheet_rects.h"
 
 // 初期化処理
 
@@ -58,7 +61,7 @@ void Player_Update(Player *player, float delta)
 }
 
 // 描画処理
-void Player_Draw(const Player *player)
+void Player_Draw(const Player *player, Texture2D texture)
 {
   // 自機弾の描画
   if (player->bullet.active) {
@@ -69,13 +72,14 @@ void Player_Draw(const Player *player)
   if (!player->active)
     return;
 
-  // 砲台の形状を幾何学図形（緑色）で簡易表現
-  // 土台部分
-  DrawRectangle((int)player->pos.x, (int)player->pos.y + 3, (int)PLAYER_WIDTH,
-                5, GREEN);
-  // 砲身の凸部分
-  DrawRectangle((int)player->pos.x + 5, (int)player->pos.y, 3, 3, GREEN);
-  DrawRectangle((int)player->pos.x + 6, (int)player->pos.y - 2, 1, 2, GREEN);
+  // スプライトシート内の自機画像の範囲指定
+  Rectangle source_rec = REC_PLAYER;
+
+  // 画面上の描画位置
+  Vector2 position = player->pos;
+
+  // スプライトシートから切り出して描画
+  DrawTextureRec(texture, source_rec, position, WHITE);
 }
 
 // 自機の当たり判定用矩形を取得
