@@ -1,0 +1,53 @@
+# ====================================================
+# Makefile (Windows w64devkit 専用版)
+# ====================================================
+
+# 1. 実行ファイル名をカレントフォルダ名から自動取得
+DIR_NAME      := $(notdir $(CURDIR))
+NAME          := $(DIR_NAME).exe
+
+# 2. ディレクトリ設定
+SRC_DIR       := src
+OBJDIR_WIN    := obj_win
+
+# 3. コンパイラ & ライブラリ設定 (w64devkit 相対/絶対パス)
+CC            := gcc
+RAYLIB_DIR    := C:/raylib/w64devkit
+
+CFLAGS        := -g -Wall -Wextra -std=c99 -pedantic-errors -MMD -MP -I$(RAYLIB_DIR)/include
+LIBS          := -L$(RAYLIB_DIR)/lib -lraylib -lopengl32 -lgdi32 -lwinmm
+
+# 4. src/ 以下のソースファイルとオブジェクトファイルの抽出
+SRCS          := $(wildcard $(SRC_DIR)/*.c)
+OBJS_WIN      := $(patsubst $(SRC_DIR)/%.c,$(OBJDIR_WIN)/%.o,$(SRCS))
+DEPS_WIN      := $(OBJS_WIN:.o=.d)
+
+# ----------------------------------------------------
+# ターゲット設定
+# ----------------------------------------------------
+.PHONY: all clean run
+
+all: $(NAME)
+
+# リンク工程 (.exe の作成)
+$(NAME): $(OBJS_WIN)
+
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
+	@echo "--- $(NAME) のビルドが成功しました ---"
+
+# コンパイル工程 (.o の作成)
+$(OBJDIR_WIN)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+
+# 実行ターゲット
+run: all
+	./$(NAME)
+
+
+# クリーンアップ
+clean:
+	rm -rf $(OBJDIR_WIN) $(NAME)
+
+-include $(DEPS_WIN)
