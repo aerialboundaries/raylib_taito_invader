@@ -1,4 +1,6 @@
 #include "ufo.h"
+#include "spritesheet_rects.h"
+#include <raylib.h>
 
 // 初期化
 void Ufo_Init(Ufo *ufo)
@@ -77,8 +79,17 @@ Rectangle Ufo_GetBounds(const Ufo *ufo)
 }
 
 // 描画処理（赤色のアッパー・円盤形状）
-void Ufo_Draw(const Ufo *ufo)
+void Ufo_Draw(const Ufo *ufo, Texture2D texture)
 {
+  // スプライトシートのUFOの画像指定
+  Rectangle source_rec = REC_UFO;
+
+  // 画面上の描画位置
+  Vector2 position = ufo->pos;
+
+  // スプライト上から切り出して描画
+  DrawTextureRec(texture, source_rec, position, WHITE);
+
   // 撃破スコアの表示
   if (ufo->score_display > 0) {
     DrawText(TextFormat("%d", ufo->score_display), (int)ufo->score_pos.x,
@@ -88,16 +99,16 @@ void Ufo_Draw(const Ufo *ufo)
   if (!ufo->active)
     return;
 
-  int px = (int)ufo->pos.x;
-  int py = (int)ufo->pos.y;
+  // int px = (int)ufo->pos.x;
+  //  int py = (int)ufo->pos.y;
 
-  // UFOのドット絵風描画（赤色）
-  DrawRectangle(px + 5, py, 6, 1, RED);
-  DrawRectangle(px + 3, py + 1, 10, 1, RED);
-  DrawRectangle(px + 2, py + 2, 12, 1, RED);
-  DrawRectangle(px + 1, py + 3, 14, 2, RED);
-  // 下部の突起（ランプ）
-  DrawRectangle(px + 2, py + 5, 2, 1, RED);
-  DrawRectangle(px + 6, py + 5, 4, 1, RED);
-  DrawRectangle(px + 12, py + 5, 2, 1, RED);
+  //  // UFOのドット絵風描画（赤色）
+  //  DrawRectangle(px + 5, py, 6, 1, RED);
+  //  DrawRectangle(px + 3, py + 1, 10, 1, RED);
+  //  DrawRectangle(px + 2, py + 2, 12, 1, RED);
+  //  DrawRectangle(px + 1, py + 3, 14, 2, RED);
+  //  // 下部の突起（ランプ）
+  //  DrawRectangle(px + 2, py + 5, 2, 1, RED);
+  //  DrawRectangle(px + 6, py + 5, 4, 1, RED);
+  //  DrawRectangle(px + 12, py + 5, 2, 1, RED);
 }

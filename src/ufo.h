@@ -22,7 +22,7 @@ typedef struct {
 // 公開関数
 void Ufo_Init(Ufo *ufo);
 void Ufo_Update(Ufo *ufo, float delta);
-void Ufo_Draw(const Ufo *ufo);
+void Ufo_Draw(const Ufo *ufo, Texture2D texture);
 Rectangle Ufo_GetBounds(const Ufo *ufo);
 int Ufo_OnHit(Ufo *ufo);
 

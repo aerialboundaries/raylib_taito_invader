@@ -128,7 +128,7 @@ int main(void)
     DrawText(TextFormat("LIVES: %d", player.lives), 150, 8, 8, GREEN);
 
     // 各要素の描画
-    Ufo_Draw(&ufo);
+    Ufo_Draw(&ufo, sprite_sheet);
     BunkerGroup_Draw(bunkers);
     AlienGroup_Draw(&aliens);
     Player_Draw(&player, sprite_sheet);
