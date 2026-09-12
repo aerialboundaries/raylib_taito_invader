@@ -45,7 +45,7 @@ typedef struct {
 // 公開関数
 void AlienGroup_Init(AlienGroup *group);
 void AlienGroup_Update(AlienGroup *group, float delta);
-void AlienGroup_Draw(const AlienGroup *group);
+void AlienGroup_Draw(const AlienGroup *group, Texture2D sprite_sheet);
 bool AlienGroup_CheckCollision(AlienGroup *group, Vector2 bullet_pos,
                                Vector2 bullet_size, int *out_score);
 bool AlienGroup_HasReachedBottom(const AlienGroup *group, float bottom_y);

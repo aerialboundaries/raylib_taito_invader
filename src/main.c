@@ -130,7 +130,7 @@ int main(void)
     // 各要素の描画
     Ufo_Draw(&ufo, sprite_sheet);
     BunkerGroup_Draw(bunkers);
-    AlienGroup_Draw(&aliens);
+    AlienGroup_Draw(&aliens, sprite_sheet);
     Player_Draw(&player, sprite_sheet);
 
     // 防衛ライン（最下部赤線）

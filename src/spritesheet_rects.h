@@ -17,14 +17,14 @@ static const Rectangle REC_ALIEN_SQUID[2] = {
 
 // 2. カニ（中段：11x8px）
 static const Rectangle REC_ALIEN_CRAB[2] = {
-    {32.0f, 0.0f, 11.0f, 8.0f}, // コマ1 (cell_x = 2)
-    {48.0f, 0.0f, 11.0f, 8.0f}  // コマ2 (cell_x = 3)
+    {32.0f, 0.0f, 14.0f, 8.0f}, // コマ1 (cell_x = 2)
+    {48.0f, 0.0f, 14.0f, 8.0f}  // コマ2 (cell_x = 3)
 };
 
 // 3. タコ（下段：12x8px）
 static const Rectangle REC_ALIEN_OCTOPUS[2] = {
-    {64.0f, 0.0f, 12.0f, 8.0f}, // コマ1 (cell_x = 4)
-    {80.0f, 0.0f, 12.0f, 8.0f}  // コマ2 (cell_x = 5)
+    {64.0f, 0.0f, 14.0f, 8.0f}, // コマ1 (cell_x = 4)
+    {80.0f, 0.0f, 14.0f, 8.0f}  // コマ2 (cell_x = 5)
 };
 
 // 4. UFO（16x7px）

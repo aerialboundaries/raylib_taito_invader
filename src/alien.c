@@ -1,6 +1,8 @@
-#include "alien.h"
 #include <raylib.h>
 #include <stdlib.h> // rand()用
+
+#include "alien.h"
+#include "spritesheet_rects.h"
 
 // モジュール内非公開の補助関数：残数に応じた速度の更新
 static void UpdateMoveInterval(AlienGroup *group)
@@ -192,9 +194,9 @@ bool AlienGroup_HasReachedBottom(const AlienGroup *group, float bottom_y)
 }
 
 // 描画処理
-void AlienGroup_Draw(const AlienGroup *group)
+void AlienGroup_Draw(const AlienGroup *group, Texture2D sprite_sheet)
 {
-  // 敵弾の描画
+  // インベーダー弾の描画
   if (group->bullet.active) {
     DrawRectangleV(group->bullet.pos, (Vector2){2.0f, 6.0f}, WHITE);
   }
@@ -206,23 +208,24 @@ void AlienGroup_Draw(const AlienGroup *group)
       if (!a->active)
         continue;
 
-      Color color = MAGENTA;
-      if (a->type == 0)
-        color = YELLOW; // 30点
-      else if (a->type <= 2)
-        color = GREEN; // 20点
-      else
-        color = SKYBLUE; // 10点
+      // タイプに応じた切り出し処理（Rectangle)を取得
+      Rectangle source_rec;
 
-      // 本来は画像テクスチャを描画する部分。ここでは仮で基本形を描画
-      // アニメーションコマによって幅を少し変化させて足を表現
-      float anim_offset = (a->anim_frame == 1) ? 2.0f : 0.0f;
-      DrawRectangle((int)a->pos.x, (int)a->pos.y, (int)ALIEN_WIDTH,
-                    (int)ALIEN_HEIGHT, color);
+      // a->typeは0:最上段（イカ）、1-2:中段（カニ）、3-4:下段（タコ）
+      if (a->type == 0) {
+        source_rec = REC_ALIEN_SQUID[a->anim_frame];
+      } else if (a->type == 2) {
+        source_rec = REC_ALIEN_CRAB[a->anim_frame];
+      } else {
+        source_rec = REC_ALIEN_OCTOPUS[a->anim_frame];
+      }
 
-      // 目に見立てた黒点（アニメーションの確認用）
-      DrawRectangle((int)a->pos.x + 2 + (int)anim_offset, (int)a->pos.y + 2, 2,
-                    2, BLACK);
+      // 描画位置の設定
+      Vector2 dest_pos = {a->pos.x, a->pos.y};
+
+      // 切り出したスプライトを描画
+      // 白以外の色で着色したい場合はWHITEの代わりにGREENなどを渡す
+      DrawTextureRec(sprite_sheet, source_rec, dest_pos, WHITE);
     }
   }
 }
